@@ -4,11 +4,12 @@
 // Completa lo que falta.
 //
 
-class Coche {
-    private String marca;
-    private String modelo;
-    private int velocidad;
 
+class Coche {
+    private static String marca;
+    private static String modelo;
+    private static int velocidad;
+    private static int velocidadActual;
 
     // Constructor COMPLETAR
     public Coche (String marca , String modelo, int velocidad){
@@ -16,32 +17,34 @@ class Coche {
         this.modelo = modelo ;
         this.velocidad = velocidad;
     }
-    
+
     // Método acelerar (suma +10) COMPLETAR
-   public static void acelerar(){
-    System.out.println("El coche va a acelerar...");
-    velocidad =+ 10;
-    System.out.println("El" + marca + modelo + "va ahora a " +  velocidad + " km/h");
-   }
+    public static void acelerar(){
+        System.out.println("El coche va a acelerar...");
+        velocidadActual = velocidad + 10;
+        System.out.println("El " + marca + " " +  modelo + " va ahora a " +  velocidadActual + " km/h");
+    }
 
     // Método frenar (resta -10 y nunca menor que 0) COMPLETAR
-   
-   public static int frenar(){
-    velocidad=-10;
-    if (velocidad < 0){
-        System.out.println("La velocidad no puede ser menor que 0");
-        return velocidad;
-    }else{
-        System.out.println("La velocidad ha reducido en 10, " + "y ahora va a " +  velocidad +  "km/h");
+
+    public static int frenar(){
+        velocidadActual= velocidadActual - 10;
+        if (velocidad < 0){
+            System.out.println("La velocidad no puede ser menor que 0");
+            return velocidad;
+        }else{
+            System.out.println("La velocidad ha reducido en 10, " + "y ahora va a " +  velocidadActual +  "km/h");
+        }
+        return velocidadActual;
     }
-   }
 
     // Método mostrarDatos COMPLETAR
     public static void mostrarDatos(){
-        System.out.println("\n Marca:" + marca "\n Modelo:" + modelo + "\n Velocidad:" + velocidad);
+        System.out.println("\n Marca:" + marca +  "\n Modelo:" + modelo + "\n Velocidad:" + velocidadActual);
     }
 
 }
+
 
 
 
@@ -51,40 +54,55 @@ class Coche {
 //
 
 
+package programacion;
+
 import java.util.ArrayList;
 
 class Alumno {
     private String nombre;
-    private ArrayList<Integer> notas;
+    private ArrayList<Double> notas;
+    private double notaMedia;
+
 
     // Constructor COMPLETAR
-    public Alumno (String nombre, ArrayList<Integer> notas){
+
+    public Alumno(String nombre) {
         this.nombre = nombre;
-        this.ArrayList<Integer> notas = notas;
+        this.notas = new ArrayList<>();
+        this.notaMedia = 0;
 
     }
-   
+
 
     // Método añadirNota COMPLETAR
 
-   public static void añadirNota(){
-    int nota1 = notas.add(//nota);
-    int nota2 = notas.add();
-    System.out.println("Nota añadida correctamente");
+    public void añadirNota(double nota) {
 
-   }
+            notas.add(nota);
+            System.out.println("Nota añadida correctamente " + nota);
 
-    // Método calcularMedia COMPLETAR
-    public static void calcularMedia(){
-        int notaMedia = (nota1 + nota2)/2;
-        System.out.println("Nota media: " + notaMedia);
+
 
     }
 
+    // Método calcularMedia COMPLETAR
+    public void calcularMedia(){
+        if (notas.isEmpty()) {
+            this.notaMedia = 0.0;
+            return;
+        }
+        double suma = 0.0;
+        for(double nota: notas){
+            suma += nota; 
+        }
+        this.notaMedia = suma / notas.size();
+        System.out.println("Nota media: " + notaMedia);
+    }
+
     // Método mostrarInfo COMPLETAR
-    public static void mostarInfo(){
-        System.out.println("Nombre: " + nombre + "\nNota 1: " + nota1 + "\Nota 2: " + nota2 + "\nNota Media: " + notaMedia);
-    } 
+    public void mostrarInfo(){
+        System.out.println("Nombre: " + nombre + "\nNotas: " + notas + "\nNota media: " + notaMedia);
+    }
 
 }
 
@@ -97,55 +115,56 @@ class Alumno {
 //
 
 
-class CuentaBancaria {
+package programacion;
 
-    // atributos COMPLETAR
-    private String titular;
-    private double saldo;
-    
-    
-    static double saldoCajero = 0; 
-    // constructor COMPLETAR
-    public CuentaBancaria (String titular, double saldo){
-        this.titular= titular;
-        this.saldo= saldo;
+import java.util.ArrayList;
+
+class Alumno {
+    private String nombre;
+    private ArrayList<Double> notas;
+    private double notaMedia;
+
+
+    // Constructor COMPLETAR
+
+    public Alumno(String nombre) {
+        this.nombre = nombre;
+        this.notas = new ArrayList<>();
+        this.notaMedia = 0;
+
     }
 
-    // método ingresar COMPLETAR
-   public static double ingresar(double saldoIngresar){
-    
-    if(saldo < 0){
-        System.out.println("No tienes saldo para ingresar");
-        return saldo;
-    }else{
-        saldoCajero =+ saldoIngresar;
-        System.out.println("Has ingresado " + saldoIngresar + ", ahora tienes en el cajero " + saldoCajero);
+
+    // Método añadirNota COMPLETAR
+
+    public void añadirNota(double nota) {
+
+            notas.add(nota);
+            System.out.println("Nota añadida correctamente " + nota);
+
+
+
     }
-    return saldoCajero;
-   }
 
-    // método retirar COMPLETAR
-
-    public static double retirar(double dineroRetiro){
-        dineroRetiro = 0;
-        if(dineroRetiro > saldoCajero){
-            System.out.println("No tienes tanto dinero en el cajero");
-            return dineroRetiro;
-        }else{
-            saldo = saldo + dineroRetiro;
-            System.out.println("Dinero retirado: "+ dineroRetiro + "y ahora tienes: " + saldo + " y te queda en el cajero: " + saldoCajero);
+    // Método calcularMedia COMPLETAR
+    public void calcularMedia(){
+        if (notas.isEmpty()) {
+            this.notaMedia = 0.0;
+            return;
         }
-        return saldo;
+        double suma = 0.0;
+        for(double nota: notas){
+            suma += nota;
+        }
+        this.notaMedia = suma / notas.size();
+        System.out.println("Nota media: " + notaMedia);
     }
 
-   
-
-    // método mostrarSaldo COMPLETAR
-
-    public static void mostrarSaldo(){
-        System.out.println("Saldo: " + saldo)
+    // Método mostrarInfo COMPLETAR
+    public void mostrarInfo(){
+        System.out.println("Nombre: " + nombre + "\nNotas: " + notas + "\nNota media: " + notaMedia);
     }
-    
+
 }
 
 
@@ -158,45 +177,80 @@ class CuentaBancaria {
 //
 
 
+
 class Libro {
 
     // atributos COMPLETAR
     private String titulo;
     private String autor;
     private String disponible;
-    
-    
+
+
     // constructor COMPLETAR
-   
-   public Libro(String titulo, String autor. String disponible){
-    this.titulo = titulo;
-    this.autor = autor;
-    this.disponible = disponible;
-   }
+
+    public Libro(String titulo, String autor, String disponible){
+        this.titulo = titulo;
+        this.autor = autor;
+        this.disponible = disponible;
+    }
 
     // método mostrarInfo COMPLETAR
 
-    public static void mostrarInfo(){
+    public void mostrarInfo(){
         System.out.println("Titulo: " + titulo + "\nAutor: " + autor + "Disponible: " + disponible);
     }
-    
+
 }
 
+
+
+
+import java.util.ArrayList;
 
 
 class Biblioteca {
 
     // lista de libros COMPLETAR
-    
+
+    private ArrayList<String> libros;
+
+
 
     // añadirLibro COMPLETAR
-    
+
+    public void añadirLibro(String libro) {
+
+        libros.add(libro);
+        System.out.println("Libro añadida correctamente " + libro);
+
+
+
+    }
 
     // prestarLibro COMPLETAR
-    
+
+    public void prestarLibro(String libro) {
+        for (int i = 0; i < libros.size(); i++) {
+            libros.remove(i);
+            System.out.println("Libro prestado correctamente");
+
+        }
+
+    }
+
 
     // devolverLibro COMPLETAR
-    
+
+    public  void devolverLibro(String libro) {
+        
+        for (libros.add(libro); libros.size() > 0; libros.remove(libros.size())) {
+            libros.add(libro);
+            System.out.println("Libro devuelto correctamente");
+
+        }
+        
+    }
+
 }
 
 
@@ -210,26 +264,59 @@ class Biblioteca {
 class Producto {
 
     // atributos COMPLETAR
+    private String nombre;
+    private double precio;
    
 
     // constructor COMPLETAR
+    public Producto(String nombre, double precio){
+        this.nombre = nombre;
+        this.precio = precio;
+    }
     
 
     // getters opcionales COMPLETAR
-    
-}
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
 
+    public void setPrecio(double precio) {
+        this.precio = precio;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public double getPrecio() {
+        return precio;
+    }
 
 
 class Carrito {
 
     // lista de productos COMPLETAR
     
+    private ArrayList <String> productos;
 
     // añadirProducto COMPLETAR
     
 
+    public static void añadirProducto(){
+    
+    
+
+    productos.add(producto);
+
+    System.out.println("Producto añadido correctamente");
+    }
+
     // calcularTotal COMPLETAR
+
+    public static void calcularTotal(){
+        int total =+ producto;
+        System.out.println(total)
+    }
     
 
 }
@@ -251,13 +338,23 @@ public class Main {
         //   - Llamar varias veces a acelerar() y frenar().
         //   - Mostrar los datos finales del coche.
 
-        Coche coche = new Coche("Mercedes", "A4", 70);
-        coche.acelerar();
-        coche.frenar();
-        cohe.acelerar();
-        coche.frenar();
-        coche.frenar();
-        coche.mostrarDatos();
+        public class MainCoche {
+
+    public static void main(String[] args) {
+
+    Coche coche1 = new Coche("BMW", "M8" , 100);
+
+    coche1.acelerar();
+    coche1.frenar();
+    coche1.frenar();
+    coche1.acelerar();
+    coche1.frenar();
+
+    coche1.mostrarDatos();
+
+    }
+}
+
 
 
 
@@ -270,12 +367,17 @@ public class Main {
 
 
 
+        public class MainAlumno {
+
+        public static void main(String[] args) {
         Alumno alumno = new Alumno ("Jaime");
 
-        alumno.añadirNota(5);
         alumno.añadirNota(10);
-        alumno.notaMedia();
-        alumno.mostarInfo();
+        alumno.añadirNota(5);
+
+        alumno.calcularMedia();
+        alumno.mostrarInfo();
+
 
 
 
@@ -287,12 +389,19 @@ public class Main {
         //   - Intentar retirar más de lo disponible (debe impedirse).
         //   - Mostrar el saldo final.
 
-        CuentaBancaria cuenta = new CuentaBancaria ("Dani", 1000)
+    
+
+public class MainBanco {
+    public static void main(String[] args) {
+        CuentaBancaria cuenta = new CuentaBancaria("Jaime", 1000);
 
         cuenta.ingresar(500);
-        cuenta.retirar(5000)
+        cuenta.retirar(5000);
         cuenta.retirar(250);
         cuenta.mostrarSaldo();
+    }
+}
+
 
 
         // EJERCICIO 4: Biblioteca y Libros
