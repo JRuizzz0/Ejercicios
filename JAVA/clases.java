@@ -205,6 +205,7 @@ class Libro {
 
 
 
+
 import java.util.ArrayList;
 
 
@@ -212,46 +213,52 @@ class Biblioteca {
 
     // lista de libros COMPLETAR
 
-    private ArrayList<String> libros;
+    private ArrayList<Libros> libros;
 
+    Biblioteca() {
+        this.libros = new ArrayList<>();
+    }
 
+    public ArrayList<Libros> getLibros() {
+        return libros;
+    }
+
+    public void setLibros(ArrayList<Libros> libros) {
+        this.libros = libros;
+    }
 
     // añadirLibro COMPLETAR
 
-    public void añadirLibro(String libro) {
-
+    public void añadirLibro(Libros libro) {
         libros.add(libro);
-        System.out.println("Libro añadida correctamente " + libro);
-
+        System.out.println("Libro añadido correctamente: " + libro);
 
 
     }
 
     // prestarLibro COMPLETAR
 
-    public void prestarLibro(String libro) {
+    public void prestarLibro(Libros libro) {
         for (int i = 0; i < libros.size(); i++) {
-            libros.remove(i);
-            System.out.println("Libro prestado correctamente");
+            Libros l = libros.get(i);
+            libros.remove(libro);
+            System.out.println("Libro prestado correctamente: " + l);
 
         }
 
     }
+        // devolverLibro COMPLETAR
 
-
-    // devolverLibro COMPLETAR
-
-    public  void devolverLibro(String libro) {
-        
-        for (libros.add(libro); libros.size() > 0; libros.remove(libros.size())) {
+    public void devolverLibro (Libros libro){
             libros.add(libro);
             System.out.println("Libro devuelto correctamente");
 
+
+
         }
-        
+
     }
 
-}
 
 
 
@@ -297,12 +304,16 @@ class Carrito {
 
     // lista de productos COMPLETAR
     
-    private ArrayList <String> productos;
+    private ArrayList <Producto> productos;
 
     // añadirProducto COMPLETAR
+
+    public Carrito(){
+        this.productos=new ArrayList()<>;
+    }
     
 
-    public static void añadirProducto(){
+    public static void añadirProducto(Producto producto){
     
     
 
@@ -313,8 +324,8 @@ class Carrito {
 
     // calcularTotal COMPLETAR
 
-    public static void calcularTotal(){
-        int total =+ producto;
+    public static void calcularTotal(Producto producto){
+        int total =+ producto.getPrecio;
         System.out.println(total)
     }
     
@@ -411,12 +422,57 @@ public class MainBanco {
         //   - Prestar un libro por título.
         //   - Devolver un libro.
         //   - Mostrar si realmente cambia su disponibilidad.
+
+
+
+        package programacion;
+
+public class MainBiblioteca {
+
+    public static void main(String[] args) {
+
+
+    Biblioteca biblioteca = new Biblioteca();
+
+   Libros libro1 = new Libros("LAlaland" , "KJ", "Si");
+   Libros libro2 = new Libros("Harry" , "JK", "Si");
+   Libros libro3 = new Libros("Vinland", "Thorfeen", "Si");
+
+    biblioteca.añadirLibro(libro1);
+    biblioteca.añadirLibro(libro2);
+    biblioteca.añadirLibro(libro3);
+
+    biblioteca.prestarLibro(libro1);
+
+    biblioteca.devolverLibro(libro1);
+
+    libro1.mostrarInfo();
+    libro2.mostrarInfo();
+    libro3.mostrarInfo();
+
+    }
+}
+
   
         // EJERCICIO 5: Producto y Carrito
         // Enunciado:
         //   - Crear 3 productos con nombre y precio.
         //   - Añadirlos al carrito.
         //   - Calcular el total del carrito.
+
+        Producto producto1 = new Producto("Leche", 2);
+        Producto producto1 = new Producto("Yogurt", 1.5);
+        Producto producto1 = new Producto("Jamon", 5);
+
+        Carrito carrito = new Carrito();
+
+        carrito.añadirProducto(producto1);
+        carrito.añadirProducto(producto2);
+        carrito.añadirProducto(producto3);
+
+        carrito.calcularTotal(producto1, producto2, producto3);
+
+
 
     }
 }
